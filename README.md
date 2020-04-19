@@ -2,6 +2,10 @@
 
 Corona Tracker is a flutter application made to track the number of coronavirus cases around the world.
 
+## Compatibility
+1. iOS
+2. Android
+
 ## Installation
 
 1. Clone this repository with the following command
