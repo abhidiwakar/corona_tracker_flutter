@@ -19,7 +19,7 @@ git clone https://github.com/abhidiwakar/corona_tracker_flutter.git
 ## Usage
 ### *Important
 Before doing anything else, finish these steps.
-1. Go to [Google Developer Console](console.developer.google.com) and get your Google Maps API key for iOS and Android.
+1. Go to [Google Developer Console](https://console.developers.google.com/) and get your Google Maps API key for iOS and Android.
 2. Follow instructions given on [google_maps_flutter](https://pub.dev/packages/google_maps_flutter) package and put your API keys in appropriate files to use maps in the app.
 
 3. Now you're ready to rock with this awesome flutter app.
