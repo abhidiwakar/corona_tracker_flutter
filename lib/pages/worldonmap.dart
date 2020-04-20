@@ -266,6 +266,7 @@ class _WorldOnMapState extends State<WorldOnMap> {
         context: context,
         builder: (BuildContext bc) {
           return Container(
+            padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               color: Colors.white.withAlpha(230),
               borderRadius: BorderRadius.only(
@@ -273,76 +274,164 @@ class _WorldOnMapState extends State<WorldOnMap> {
                 topRight: Radius.circular(15.0),
               ),
             ),
-            child: ListView(
+            child: Wrap(
               children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: Center(
-                    child: Text(
-                      f.name,
-                      style: Theme.of(context).textTheme.title,
+                Text(
+                  f.name,
+                  style: Theme.of(context).textTheme.title,
+                ),
+                Divider(
+                  thickness: 0.5,
+                  color: Colors.grey,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          gradient: LinearGradient(
+                            colors: [Colors.black, Colors.black54],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Total Cases',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .title
+                                  .apply(color: Colors.white),
+                            ),
+                            Text(
+                              f.confirmed != 'null' ? f.confirmed : '-',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .display1
+                                  .apply(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(width: 10.0),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          gradient: LinearGradient(
+                            colors: [Colors.blue, Colors.blueGrey],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Active Cases',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .title
+                                  .apply(color: Colors.white),
+                            ),
+                            Text(
+                              f.confirmed != 'null' &&
+                                      f.deaths != 'null' &&
+                                      f.recovered != 'null'
+                                  ? (int.parse(f.confirmed) -
+                                          int.parse(f.recovered) -
+                                          int.parse(f.deaths))
+                                      .toString()
+                                  : '-',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .display1
+                                  .apply(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 8.0, left: 10.0, right: 10.0),
-                  child: Divider(
-                    color: Colors.grey,
-                    height: 1.0,
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                ListTile(
-                  title: Text(
-                    f.confirmed,
-                    style: Theme.of(context)
-                        .textTheme
-                        .display1
-                        .apply(color: Colors.black),
-                  ),
-                  subtitle: Text(
-                    'Total Cases',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subhead
-                        .apply(color: Colors.black),
-                  ),
-                  onTap: () => {},
-                ),
-                ListTile(
-                  title: Text(
-                    f.recovered,
-                    style: Theme.of(context)
-                        .textTheme
-                        .display1
-                        .apply(color: Colors.green),
-                  ),
-                  subtitle: Text(
-                    'Recovered',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subhead
-                        .apply(color: Colors.green),
-                  ),
-                  onTap: () => {},
-                ),
-                ListTile(
-                  title: Text(
-                    f.deaths,
-                    style: Theme.of(context)
-                        .textTheme
-                        .display1
-                        .apply(color: Colors.red),
-                  ),
-                  subtitle: Text(
-                    'Fatal Cases',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subhead
-                        .apply(color: Colors.red),
-                  ),
-                  onTap: () => {},
+                //SizedBox(height: 10.0),
+                Container(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          gradient: LinearGradient(
+                            colors: [Colors.green, Colors.lightGreen],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Recovered',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .title
+                                  .apply(color: Colors.white),
+                            ),
+                            Text(
+                              f.recovered != 'null' ? f.recovered : '-',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .display1
+                                  .apply(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10.0),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          gradient: LinearGradient(
+                            colors: [Colors.red, Colors.redAccent],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Fatal Cases',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .title
+                                  .apply(color: Colors.white),
+                            ),
+                            Text(
+                              f.deaths != 'null' ? f.deaths : '-',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .display1
+                                  .apply(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
